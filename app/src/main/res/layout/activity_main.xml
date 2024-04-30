@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@color/black">
+
+<LinearLayout
+    android:id="@+id/homeStatsScreen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:visibility="visible">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:id="@+id/Hero">
+
+        <ImageView
+            android:id="@+id/timeIcon"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/moon"
+            app:tint="@color/white"
+            android:layout_marginBottom="50dp"
+            android:visibility="invisible"/>
+
+        <LinearLayout
+            android:layout_marginTop="-35dp"
+            android:id="@+id/mainTemp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center|end"
+                android:textSize="40dp"
+                android:text="100"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/baskervellie"/>
+            <TextView
+                android:id="@+id/degree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|start"
+                android:textSize="20dp"
+                android:text="°C"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/baskervellie"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom|start"
+            android:textSize="20dp"
+            android:text="Sunny"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="0dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/baskervellie"
+            android:visibility="invisible"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/swipeUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:textColor="@color/white"
+            android:src="@drawable/swipe"
+            android:gravity="center"
+            app:tint="@color/white" />
+        <TextView
+            android:text="Swipe up to see more info."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:fontFamily="@font/baskervellie"/>
+    </LinearLayout>
+</LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/mainStatsScreen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        android:visibility="invisible">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:gravity="center">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/temp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="temperature"
+                    android:textColor="@color/white"
+                    android:textSize="80dp"
+                    android:singleLine="true"
+                    android:padding="10dp"
+                    android:fontFamily="@font/baskervellie"
+                    />
+                <TextView
+                    android:id="@+id/tempFeelsLike"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Feels like"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:layout_gravity="center"
+                    android:singleLine="true"
+                    android:fontFamily="@font/baskervellie"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingStart= "30dp">
+
+                <TextView
+                    android:id="@+id/tempMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="max"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:singleLine="true"
+                    android:fontFamily="@font/baskervellie"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|end"
+                android:paddingEnd="30dp">
+
+                <TextView
+                    android:id="@+id/tempMin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="min"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:singleLine="true"
+                    android:fontFamily="@font/baskervellie"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingStart= "30dp">
+
+                <TextView
+                    android:id="@+id/city"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="city"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:singleLine="true"
+                    android:fontFamily="@font/baskervellie"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|end"
+                android:paddingEnd="30dp">
+
+                <TextView
+                    android:id="@+id/state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="condition"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:singleLine="true"
+                    android:fontFamily="@font/baskervellie"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:paddingStart= "30dp">
+
+                <TextView
+                    android:id="@+id/humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="humidity"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:singleLine="true"
+                    android:fontFamily="@font/baskervellie"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical|end"
+                android:paddingEnd="30dp">
+
+                <TextView
+                    android:id="@+id/pressure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="pressure"
+                    android:textColor="@color/white"
+                    android:textSize="30dp"
+                    android:singleLine="true"
+                    android:fontFamily="@font/baskervellie"
+                    />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="visible">
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="65dp"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:textColor="@color/white"
+                    android:src="@drawable/left"
+                    android:gravity="center"
+                    app:tint="@color/white" />
+            </LinearLayout>
+            <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_weight="1">
+
+                <LinearLayout
+                    android:id="@+id/containerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/containerLayout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/day1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Mon"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/min1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Min"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/containerLayout2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/day2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tue"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/min2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Min"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/containerLayout3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/day3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Wed"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/min3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Min"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/containerLayout4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/day4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Thu"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/min4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Min"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/containerLayout5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/day5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Fri"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/min5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Min"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/containerLayout6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/day6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sat"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/min6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Min"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/containerLayout7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+                        <TextView
+                            android:id="@+id/day7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Sun"
+                            android:textColor="@color/white"/>
+                        <TextView
+                            android:id="@+id/min7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Min"
+                            android:textColor="@color/white"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </HorizontalScrollView>
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="65dp"
+                android:gravity="center">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:textColor="@color/white"
+                    android:src="@drawable/right"
+                    android:gravity="center"
+                    app:tint="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/love"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="invisible"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="made with ❤️ by Raunak"
+            android:textColor="#808080"
+            android:textSize="15dp"
+            android:singleLine="true"
+            android:fontFamily="@font/baskervellie" />
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
