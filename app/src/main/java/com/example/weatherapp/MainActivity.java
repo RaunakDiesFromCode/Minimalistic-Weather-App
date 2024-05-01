@@ -1,7 +1,9 @@
 package com.example.weatherapp;
 
+import android.app.WallpaperManager;
 import android.graphics.RenderEffect;
 import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +17,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     LinearLayout mainTemp, swipeUp, Hero, mainStatsScreen, homeStatsScreen, containerLayout, love;
     private GestureDetector gestureDetector;
     boolean mainPageOpened = true;
+    LinearLayout mainRL;
 
 
     private static final String API_KEY = "HBNH7QAWHUEPF7PE93TEJT3Y8";
@@ -67,6 +71,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
 
         timeIcon = findViewById(R.id.timeIcon);
         state = findViewById(R.id.state);
@@ -84,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         max = findViewById(R.id.tempMax);
         min = findViewById(R.id.tempMin);
         city = findViewById(R.id.city);
+        mainRL = findViewById(R.id.main);
         homeStatsScreen = findViewById(R.id.homeStatsScreen);
         containerLayout = findViewById(R.id.containerLayout);
 
@@ -98,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         new Thread(() -> {
             try {
                 URL url = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" +
-                        "Kolkata,%20WB,%20India" + "?unitGroup=uk&key=" + API_KEY + "&contentType=json");
+                        CITY + ",%20WB,%20India" + "?unitGroup=uk&key=" + API_KEY + "&contentType=json");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
 
@@ -167,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         new Thread(() -> {
             try {
                 URL url = new URL("https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/" +
-                        "Kolkata,%20WB,%20India" + "?unitGroup=uk&key=" + API_KEY + "&contentType=json");
+                        CITY + ",%20WB,%20India" + "?unitGroup=uk&key=" + API_KEY + "&contentType=json");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
 
@@ -218,6 +225,18 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         }).start();
     }
 
+    public static String extractCityName(String cityName) {
+        // Check if cityName contains a comma
+        int commaIndex = cityName.indexOf(',');
+
+        if (commaIndex != -1) {
+            // Extract substring before the comma
+            cityName = cityName.substring(0, commaIndex).trim();
+        }
+
+        return cityName;
+    }
+
 
     private void setStats(String description, int hum, double pre, double temp, String cityName, double minT, double maxT, double feelL) {
         int iconResId;
@@ -225,22 +244,30 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         // Determine weather icon based on description
 //        description = "Partially cloudy";
         description = description.toLowerCase();
+        cityName = extractCityName(cityName);
+        mainRL.setRenderEffect(RenderEffect.createBlurEffect(200, 200, Shader.TileMode.MIRROR));
         switch (description) {
             case "few clouds":
             case "scattered clouds":
             case "broken clouds":
             case "partially cloudy":
+                description = "Cloudy";
                 iconResId = R.drawable.cloudy;
+                mainRL.setBackgroundResource(R.drawable.cloudybg);
                 break;
             case "shower rain":
             case "rain":
+                description = "Rainy";
                 iconResId = R.drawable.rain;
+                mainRL.setBackgroundResource(R.drawable.rainbg);
                 break;
             case "thunderstorm":
                 iconResId = R.drawable.storm;
+                mainRL.setBackgroundResource(R.drawable.stormbg);
                 break;
             case "snow":
                 iconResId = R.drawable.sleet;
+                mainRL.setBackgroundResource(R.drawable.sleetbg);
                 break;
             case "mist":
             case "smoke":
@@ -252,6 +279,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             case "squall":
             case "tornado":
                 iconResId = R.drawable.fog;
+                mainRL.setBackgroundResource(R.drawable.fogbg);
                 break;
             default:
                 // Determine icon based on day/night time if weather condition not recognized
@@ -260,9 +288,11 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                 if (currentHour >= 6 && currentHour < 18) {
                     // It's day
                     iconResId = R.drawable.sun;
+                    mainRL.setBackgroundResource(R.drawable.sunbg);
                 } else {
                     // It's night
                     iconResId = R.drawable.moon;
+                    mainRL.setBackgroundResource(R.drawable.moonbg);
                 }
                 break;
         }
@@ -277,10 +307,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         dataTextView.setText(String.format("%.0f", temp));
         tempC.setText(String.format("%.0f°C", temp));
         city.setText(cityName);
-        humidity.setText(String.format("H: %d%%", hum));
-        pressure.setText(String.format("P: %.0f hPa", pre));
-        max.setText(String.format("Max: %.0f°C", maxT));
-        min.setText(String.format("Min: %.0f°C", minT));
+        humidity.setText(String.format("%d%%", hum));
+        pressure.setText(String.format("%.0f hPa", pre));
+        max.setText(String.format("%.0f°C", maxT));
+        min.setText(String.format("%.0f°C", minT));
         feelsLike.setText(String.format("Feels like %.0f°C", feelL));
 
         // Delay for displaying UI elements with animations
@@ -288,6 +318,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         new Handler().postDelayed(() -> {
             mainTemp.setVisibility(View.VISIBLE);
             mainTemp.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
+            mainRL.setVisibility(View.VISIBLE);
+            mainRL.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade_in));
         }, delayMillis);
 
         String finalDescription = description;
